@@ -1,0 +1,6 @@
+# ++AIの書き込み [2026-06-01 12:30] [mss / pytest 追加] [write_file] [deepseek-v4-flash]
+# --AIの書き込み [2026-06-01 12:30]
+pillow==12.2.0
+rich==14.1.0
+mss==10.0.0
+pytest==9.0.3

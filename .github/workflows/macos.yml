@@ -1,0 +1,38 @@
+# ++AIの書き込み [2026-06-01 12:30] [GitHub Actions: macOS - 全OS対応] [write_file] [deepseek-v4-flash]
+# --AIの書き込み [2026-06-01 12:30]
+
+name: CI - macOS
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python ${{ matrix.python-version }} をセットアップ
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Python依存関係をインストール
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: pytest でユニットテストを実行
+        run: |
+          python -m pytest tests/ -v --tb=short
+
+      - name: スクリーンショットテスト（macOS）
+        run: |
+          python test.py
