@@ -15,7 +15,12 @@ from rich.text import Text
 console = Console()
 
 
-def check():
+def is_windows() -> bool:
+    """現在のOSがWindowsかを判定"""
+    return platform.system() == "Windows"
+
+
+def check_windows():
     """GUIを起動 → スクリーンショット撮影 → 終了（Windows/Linux/macOS対応）"""
     app = IV_GUI()
 
@@ -36,5 +41,5 @@ def check():
 if __name__ == "__main__":
     console.print(f"[cyan]OS: {platform.system()} / {platform.release()}[/cyan]")
     console.print("[green]GUI + スクリーンショットテスト開始[/green]")
-    check()
+    check_windows()
     console.print("[green]スクリーンショットテスト完了[/green]")
